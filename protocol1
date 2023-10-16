@@ -1,0 +1,16 @@
+    <start> -> (ANY_BODY_HOME) <answer>;
+
+<answer> -> [GO_AWAY] |
+	    [WHATS_UP] <transaction>;
+
+<transaction> -> (CAN_I_BORROW_A_CUP_OF_SUGAR) <sugar_reply> |
+	  (WHATS_THE_WEATHER_LIKE_OVER_THERE) <weather_reply>;
+
+<sugar_reply> -> [SORRY_PLUMB_OUT] <next> |
+		 [SURE_THING] <next>;
+
+<weather_reply> -> [NICE_DAY] <next> |
+		   [IT_STINKS] <next>;
+
+<next> -> <transaction> |
+	   (BYE_BYE);

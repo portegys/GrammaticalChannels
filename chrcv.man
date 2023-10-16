@@ -1,0 +1,67 @@
+.deTH
+.PD
+.nrIN \\n()Mu
+.ift .ds ]H \\$1\^(\^\\$2\^)
+.ifn .ds ]H \\$1(\\$2)
+.if\\n()s .ds ]D
+.if\\n()t .ds ]D UNIX 5.0
+.ifn .ds ]D UNIX 5.0
+.ds]L
+.if!\\$3 .ds ]L (\^\\$3\^)
+.if!\\$4 .ds ]D \\$4
+.wh0 }H
+.wh-\\n(:mu }F
+.em}M
+.if\\n(nl .bp
+.nr)I \\n()Mu
+.nr)R 0
+.}E
+.DT
+.ifn \{.na
+.nh\}
+.ift \{.bd S 3 3
+.hy14 \}
+..
+.TH CHRCV 2 PROTOTYPE
+.SH NAME
+chrcv \- receive a grammatical channel message
+.SH SYNOPSIS
+.B #include <chdefs.h>
+.PP
+.nf
+.B "int chrcv (chname, chend, chfunc, prname, prstat, mtype, mtext)"
+.B char *chname;
+.B int *chend;
+.B int *chfunc;
+.B char *prname;
+.B int *prstat;
+.B int *mtype;
+.B char *mtext;
+.SH DESCRIPTION
+Chrcv receives a message from an open channel (see chopen(2)).
+More than one channel may be open at a time.
+Messages are received in FIFO order.
+If no message is available,
+the invoking process is suspended until a message arrives.
+When more than one channel is open, the first message 
+available on any channel is gotten. 
+.PP
+Various values result from the call.
+Chname is the name of the channel which produced
+the message.  Chend indicates which end of the channel the 
+message arrived from, either AEND (A end) or BEND (B end).  
+Chfunc indicates
+the channel function performed with the message (see chsend(2)).
+Prname is the protocol name in effect, if any.  Prstat is the status
+of the protocol, either ACTIVE, IDLE, or an ERROR has occurred in
+parsing.  Mtype is the user message type of the message.  Mtext is
+the message text.
+.SH RETURN VALUE
+SUCCESS - message received, NOCHANNEL - an open channel
+does not exist, NOTOPEN - no channel is open, 
+and FAIL - an error occurred.
+.SH SEE ALSO
+"Grammatical Channels" by T. E. Portegys
+
+chclose(2), chcreat(2), chkill(2), chflush(2), chopen(2),
+chpc(1), chsend(2).

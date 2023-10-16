@@ -1,0 +1,76 @@
+.deTH
+.PD
+.nrIN \\n()Mu
+.ift .ds ]H \\$1\^(\^\\$2\^)
+.ifn .ds ]H \\$1(\\$2)
+.if\\n()s .ds ]D
+.if\\n()t .ds ]D UNIX 5.0
+.ifn .ds ]D UNIX 5.0
+.ds]L
+.if!\\$3 .ds ]L (\^\\$3\^)
+.if!\\$4 .ds ]D \\$4
+.wh0 }H
+.wh-\\n(:mu }F
+.em}M
+.if\\n(nl .bp
+.nr)I \\n()Mu
+.nr)R 0
+.}E
+.DT
+.ifn \{.na
+.nh\}
+.ift \{.bd S 3 3
+.hy14 \}
+..
+.TH CHPC 1 PROTOTYPE
+.SH NAME
+chpc \- compile a grammatical channel protocol
+.SH SYNOPSIS
+.B chpc protocol-file
+.SH DESCRIPTION
+Chpc compiles a grammatical channel protocol specified in protocol-file.  
+The protocol is a context-free grammar with a simple
+syntax.  C-type comments are allowed.  The direction of
+messages on the channel is important and denoted by enclosing
+messages from the "A" end in (), and enclosing the messages
+from the "B" end in [].  These messages are the terminal symbols
+in the grammar.
+Non-terminal symbols are enclosed in
+<>.  Symbols consist of strings of alphanumeric characters 
+and underscores.
+.PP
+The protocol is given as a set of grammar productions.
+Each grammar production contains a single non-terminal on the
+left side, and a string of one or more terminal and non-terminal
+symbols on the right hand side.  An arrow, "->", separates
+the left from the right side.  
+For conciseness, an or "|" operator may be used to combine productions
+with the same left hand side.
+There must be a production of the form "<start> ->", which
+indicates the start state of the protocol.
+Finally, each production must be terminated by a semicolon ";".
+.PP
+The protocol compiler
+creates an executable program named p.out, and
+a header file named pdefs.h, which
+contains the #define statements for the message types.
+The program contains a yacc(1) parser portion, and another
+portion which intercepts messages passing through the channel
+and sends the message types through the parser as tokens.
+.SH EXAMPLE
+This is an example of a protocol which allows a process to ask
+a question "QUESTION" of another process, for which it expects either
+"ANSWER1" or "ANSWER2".  
+The asking process uses the A end of the channel and the answering
+process uses the B end.
+.PP
+	/* Ask a question */
+
+	<start> -> (QUESTION) <answer>;
+
+	<answer> -> [ANSWER1] | [ANSWER2];
+.SH SEE ALSO
+"Grammatical Channels" by T. E. Portegys
+
+chclose(2), chcreat(2), chflush(2), chkill(2), chopen(2),
+chsend(2), chrcv(2), yacc(1).

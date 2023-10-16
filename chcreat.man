@@ -1,0 +1,45 @@
+.deTH
+.PD
+.nrIN \\n()Mu
+.ift .ds ]H \\$1\^(\^\\$2\^)
+.ifn .ds ]H \\$1(\\$2)
+.if\\n()s .ds ]D
+.if\\n()t .ds ]D UNIX 5.0
+.ifn .ds ]D UNIX 5.0
+.ds]L
+.if!\\$3 .ds ]L (\^\\$3\^)
+.if!\\$4 .ds ]D \\$4
+.wh0 }H
+.wh-\\n(:mu }F
+.em}M
+.if\\n(nl .bp
+.nr)I \\n()Mu
+.nr)R 0
+.}E
+.DT
+.ifn \{.na
+.nh\}
+.ift \{.bd S 3 3
+.hy14 \}
+..
+.TH CHCREAT 2 PROTOTYPE
+.SH NAME
+chcreat \- create a grammatical channel
+.SH SYNOPSIS
+.B #include <chdefs.h>
+.PP
+.nf
+.B int chcreat (chname)
+.B char *chname;
+.SH DESCRIPTION
+Chcreat creates a grammatical channel named chname.  This
+channel may then be used for message communication using 
+chopen(2), chsend(2) and chrcv(2).
+.SH RETURN VALUE
+SUCCESS - channel created, DUPCHANNEL - the specified channel
+already exists, and FAIL - an error occurred.
+.SH SEE ALSO
+"Grammatical Channels" by T. E. Portegys
+
+chclose(2), chkill(2), chflush(2), chopen(2), 
+chpc(1), chsend(2), chrcv(2).

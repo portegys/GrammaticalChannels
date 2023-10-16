@@ -1,0 +1,48 @@
+.deTH
+.PD
+.nrIN \\n()Mu
+.ift .ds ]H \\$1\^(\^\\$2\^)
+.ifn .ds ]H \\$1(\\$2)
+.if\\n()s .ds ]D
+.if\\n()t .ds ]D UNIX 5.0
+.ifn .ds ]D UNIX 5.0
+.ds]L
+.if!\\$3 .ds ]L (\^\\$3\^)
+.if!\\$4 .ds ]D \\$4
+.wh0 }H
+.wh-\\n(:mu }F
+.em}M
+.if\\n(nl .bp
+.nr)I \\n()Mu
+.nr)R 0
+.}E
+.DT
+.ifn \{.na
+.nh\}
+.ift \{.bd S 3 3
+.hy14 \}
+..
+.TH CHFLUSH 2 PROTOTYPE
+.SH NAME
+chflush \- flush messages from a grammatical channel
+.SH SYNOPSIS
+.B #include <chdefs.h>
+.PP
+.nf
+.B int chflush (chname, chend)
+.B char *chname;
+.B int chend;
+.SH DESCRIPTION
+Chflush flushes incoming messages out of the channel named chname from 
+the end chend.  Chend may be either AEND or BEND for the A or
+B end of the channel respectively.  
+.SH RETURN VALUE
+SUCCESS - all messages flushed out of the channel at end chend,
+NOTOPEN - the channel is not open,  NOCHANNEL - the channel
+does not exist, and
+FAIL - an error occurred.
+.SH SEE ALSO
+"Grammatical Channels" by T. E. Portegys
+
+chclose(2), chcreat(2), chkill(2), chopen(2),
+chpc(1), chsend(2), chrcv(2).

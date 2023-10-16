@@ -1,0 +1,59 @@
+.deTH
+.PD
+.nrIN \\n()Mu
+.ift .ds ]H \\$1\^(\^\\$2\^)
+.ifn .ds ]H \\$1(\\$2)
+.if\\n()s .ds ]D
+.if\\n()t .ds ]D UNIX 5.0
+.ifn .ds ]D UNIX 5.0
+.ds]L
+.if!\\$3 .ds ]L (\^\\$3\^)
+.if!\\$4 .ds ]D \\$4
+.wh0 }H
+.wh-\\n(:mu }F
+.em}M
+.if\\n(nl .bp
+.nr)I \\n()Mu
+.nr)R 0
+.}E
+.DT
+.ifn \{.na
+.nh\}
+.ift \{.bd S 3 3
+.hy14 \}
+..
+.TH CHSEND 2 PROTOTYPE
+.SH NAME
+chsend \- send a grammatical channel message
+.SH SYNOPSIS
+.B #include <chdefs.h>
+.PP
+.nf
+.B "int chsend (chname, chend, chfunc, prname, mtype, mtext)"
+.B char *chname;
+.B int chend, chfunc;
+.B char *prname;
+.B int mtype;
+.B char *mtext;
+.SH DESCRIPTION
+Chsend sends a message given in mtext into the channel chname.
+Chend indicates which end of the channel the message should be
+sent into, either AEND (A end) or BEND (B end).  
+.PP
+Chfunc indicates
+the channel function to be performed with the message.  Its values
+are: (1) STARTP - start parsing the protocol given in prname, (2) ENDP - 
+normally terminate parsing by the active protocol, (3) CLEARP - unconditionally
+terminate any protocol parsing, and (4) USERMSG - transport a user message.
+.PP
+Mtype is set by the user to a user message type value.  These values
+are parsed by the requested protocols.
+.SH RETURN VALUE
+SUCCESS - message sent, NOCHANNEL - the specified channel
+does not exist, NOTOPEN - the channel is not open at chend,
+and FAIL - an error occurred.
+.SH SEE ALSO
+"Grammatical Channels" by T. E. Portegys
+
+chclose(2), chcreat(2), chkill(2), chflush(2), chopen(2),
+chpc(1), chrcv(2).

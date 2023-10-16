@@ -1,0 +1,33 @@
+.HU "APPENDIX 2 - EXAMPLE USE OF A GRAMMATICAL CHANNEL"
+.P
+This appendix presents an example of the use of a grammatical
+channel to transport messages involved in the control of
+a telephone call in a ficticious telephone switch.
+Two processes are used, one to control each
+end of the connection between an originating and terminating
+party.  Only the originating process logic is shown.
+.P
+The example begins with the originator process, knowing the
+address of the terminating party, obtaining a channel to use
+for the message exchange.  Then it requests to connect to
+the terminating party
+by sending a message through a common channel to a routing
+process (not shown), which creates the terminating process
+and passes to it the channel identity that it will use
+to communicate with the originator.  The two processes then
+carry out the rest of the call.  In this system, the called
+party is able to signal the originating end to hold the
+connection up, i.e. prevent the originating party from
+disconnecting the call.
+.SK
+.DS
+The channel protocol:
+
+.so app2.p
+.DE
+.SK
+.DS
+The originating process program:
+
+.so app2.c
+.DE

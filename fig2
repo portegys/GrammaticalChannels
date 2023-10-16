@@ -1,0 +1,37 @@
+.DS
+.GS
+
+                         Channel
+
+              |                                |
+Process 1     |       STARTP(protocol)         |    Process 2
+              |------------------------------->|
+              |                                |
+              |       USERMSG1                 |
+              |------------------------------->|
+              |                                |
+              |       USERMSG2(error)          |
+              |<-------------------------------|
+   chflush--->|                                |
+              |       CLEARP                   |
+              |------------------------------->|
+              |                                |
+              |       CLEARP                   |
+              |<-------------------------------|
+              |                                |
+              |       STARTP(protocol)         |   
+              |------------------------------->|
+              |                                |
+.GE
+.DE
+.DS
+
+
+
+
+
+
+.DE
+.DS 2
+Figure 2 - An Error Handling Scenario
+.DE

@@ -1,0 +1,48 @@
+.deTH
+.PD
+.nrIN \\n()Mu
+.ift .ds ]H \\$1\^(\^\\$2\^)
+.ifn .ds ]H \\$1(\\$2)
+.if\\n()s .ds ]D
+.if\\n()t .ds ]D UNIX 5.0
+.ifn .ds ]D UNIX 5.0
+.ds]L
+.if!\\$3 .ds ]L (\^\\$3\^)
+.if!\\$4 .ds ]D \\$4
+.wh0 }H
+.wh-\\n(:mu }F
+.em}M
+.if\\n(nl .bp
+.nr)I \\n()Mu
+.nr)R 0
+.}E
+.DT
+.ifn \{.na
+.nh\}
+.ift \{.bd S 3 3
+.hy14 \}
+..
+.TH CHOPEN 2 PROTOTYPE
+.SH NAME
+chopen \- open a grammatical channel
+.SH SYNOPSIS
+.B #include <chdefs.h>
+.PP
+.nf
+.B int chopen (chname, chend)
+.B char *chname;
+.B int chend;
+.SH DESCRIPTION
+Chopen opens a grammatical channel named chname.  
+Chend is the end to open.  This
+channel may then be used for message communication using chsend(2)
+and chrcv(2).
+.SH RETURN VALUE
+SUCCESS - channel opened, DUPCHANNEL - the specified channel
+is already open at chend, TOOMANY - system limit on open channels
+would be exceeded, and FAIL - an error occurred.
+.SH SEE ALSO
+"Grammatical Channels" by T. E. Portegys
+
+chclose(2), chcreat(2), chkill(2), chflush(2), 
+chpc(1), chsend(2), chrcv(2).

@@ -1,0 +1,46 @@
+.deTH
+.PD
+.nrIN \\n()Mu
+.ift .ds ]H \\$1\^(\^\\$2\^)
+.ifn .ds ]H \\$1(\\$2)
+.if\\n()s .ds ]D
+.if\\n()t .ds ]D UNIX 5.0
+.ifn .ds ]D UNIX 5.0
+.ds]L
+.if!\\$3 .ds ]L (\^\\$3\^)
+.if!\\$4 .ds ]D \\$4
+.wh0 }H
+.wh-\\n(:mu }F
+.em}M
+.if\\n(nl .bp
+.nr)I \\n()Mu
+.nr)R 0
+.}E
+.DT
+.ifn \{.na
+.nh\}
+.ift \{.bd S 3 3
+.hy14 \}
+..
+.TH CHCLOSE 2 PROTOTYPE
+.SH NAME
+chclose \- close a grammatical channel
+.SH SYNOPSIS
+.B #include <chdefs.h>
+.PP
+.nf
+.B int chclose (chname, chend)
+.B char *chname;
+.B int chend;
+.SH DESCRIPTION
+Chclose closes the grammatical channel chname.  
+Chend is the end to close.
+No more sends and receives may be done on the channel.
+.SH RETURN VALUE
+SUCCESS - channel successfully closed, 
+and FAIL - an error occurred.
+.SH SEE ALSO
+"Grammatical Channels" by T. E. Portegys
+
+chcreat(2), chflush(2), chkill(2), chopen(2),
+chpc(1), chsend(2), chrcv(2).
